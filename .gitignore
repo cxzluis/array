@@ -1,32 +1,34 @@
-# Prerequisites
-*.d
+#include <iostream>
+using namespace std;
 
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
+int main() {
+    int numbers[30];  // Create an int array of size 30
 
-# Precompiled Headers
-*.gch
-*.pch
+    // Initialize the first two elements of the array
+    numbers[0] = 0;
+    numbers[1] = 1;
 
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
+    // Use a for loop to fill in the remaining places in numbers with values from series A
+    for (int n = 2; n < 30; n++) {
+        numbers[n] = n * n - numbers[n - 1];
+    }
 
-# Fortran module files
-*.mod
-*.smod
+    char response;
+    do {
+        int index;
+        cout << "Enter an index number between 0 and 29 to find the value at that place in the sequence: ";
+        cin >> index;
 
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
+        // Check if the input index is within the valid range
+        if (index >= 0 && index < 30) {
+            cout << "The value is: " << numbers[index] << endl;
+        } else {
+            cout << "Invalid index. Please enter a number between 0 and 29." << endl;
+        }
 
-# Executables
-*.exe
-*.out
-*.app
+        cout << "Would you like to find another value? (y/n) ";
+        cin >> response;
+    } while (response == 'y' || response == 'Y');
+
+    return 0;
+}
